@@ -10,11 +10,37 @@ import {
   Typography, 
   Paper 
 } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+// import { green, purple } from '@mui/material/colors';
 
 import Game from './Game';
 import { Vis } from './vis';
 import { LineChart, BarChart } from './c3';
 
+
+const customTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#1F2891',
+    },
+    secondary: {
+      main: '#FB5A2E',
+      dark: '#D73B21'
+    },
+    error: {
+      main: '#F24C3D'
+    },
+    warning: {
+      main: '#F2BE22'
+    },
+    success: {
+      main: '#26A699'
+    },
+    info: {
+      main: '#64748B'
+    }
+  },
+});
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -69,7 +95,7 @@ export default function Layout() {
   };
 
   return (
-    <>
+    <ThemeProvider theme={customTheme}>
       <Container>
         <Box sx={{ width: '100%' }}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
@@ -106,6 +132,6 @@ export default function Layout() {
           </TabPanel>
         </Box>
       </Container>
-    </>
+    </ThemeProvider>
   );
 }

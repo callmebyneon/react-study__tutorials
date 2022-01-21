@@ -9,8 +9,9 @@
 }
 
 .square {
-  background: #fff;
-  border: 1px solid #999;
+  background: #4B53A7;
+  border: 1px solid #fff;
+  color: #fff;
   float: left;
   font-size: 24px;
   font-weight: normal;
