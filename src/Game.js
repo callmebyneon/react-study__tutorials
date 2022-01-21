@@ -1,6 +1,14 @@
 import React from 'react';
 import './Game.css';
 
+import SortIcon from '@mui/icons-material/Sort';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import Paper from '@mui/material/Paper';
+
+
 function Square(props) {
   return (
     <button 
@@ -117,22 +125,35 @@ class Game extends React.Component {
     return (
       <React.Fragment>
         <div className="game">
-          <Board 
-            winLines={lines ? lines : undefined}
-            lastIndex={current.lastIndex}
-            squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
-          />
+          <Paper className="game-board" elevation={3} sx={{ padding: 2, bgcolor: 'primary.light' }}>
+            <Board 
+              winLines={lines ? lines : undefined}
+              lastIndex={current.lastIndex}
+              squares={current.squares}
+              onClick={(i) => this.handleClick(i)}
+            />
+          </Paper>
           <div className="game-info">
             <div className={(winner || history.length === 10) ? 'end' : undefined}>{status}</div>
-            <button onClick={() => this.setState({ isAsc: !this.state.isAsc })}>Change the order below</button>
+            <Stack direction="row" spacing={2}>
+              <Tooltip title="Click to New Game" placement="left">
+                <Button variant="outlined" color="secondary" onClick={() => this.resetGame()}>
+                  <RestartAltIcon />
+                </Button>
+              </Tooltip>
+              <Tooltip title="Click to Change history's order" placement="right">
+                <Button variant="outlined" color="primary" onClick={() => this.setState({ isAsc: !this.state.isAsc })}>
+                  <SortIcon />
+                </Button>
+              </Tooltip>
+            </Stack>
             <ol className={this.state.isAsc ? 'asc' : 'desc'}>
               {this.state.isAsc 
                 ? history.map((step, move) => {
                   const log = move ? `Go to move #${move}` : `Go to game start`;
                   return (
                     <li key={move}>
-                      <button onClick={() => this.jumpTo(move)}>{log}</button>
+                      <Button variant="text" onClick={() => this.jumpTo(move)}>{log}</Button>
                     </li>
                   );
                 })
@@ -141,7 +162,7 @@ class Game extends React.Component {
                   const log = move ? `Go to move #${move}` : `Go to game start`;
                   return (
                     <li key={move}>
-                      <button onClick={() => this.jumpTo(move)}>{log}</button>
+                      <Button variant="text" onClick={() => this.jumpTo(move)}>{log}</Button>
                     </li>
                   );
                 })
