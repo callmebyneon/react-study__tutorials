@@ -1,12 +1,3 @@
-body {
-  font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
-}
-
-ol, ul {
-  padding-left: 30px;
-}
-
 .board-row:after {
   clear: both;
   content: "";
@@ -20,9 +11,10 @@ ol, ul {
 .square {
   background: #fff;
   border: 1px solid #999;
+  color: #fff;
   float: left;
   font-size: 24px;
-  font-weight: bold;
+  font-weight: normal;
   line-height: 34px;
   height: 34px;
   margin-right: -1px;
@@ -30,6 +22,16 @@ ol, ul {
   padding: 0;
   text-align: center;
   width: 34px;
+}
+
+.square.last {
+  font-weight: bold;
+}
+
+.square.win {
+  font-weight: bold;
+  background: #FB5A2E;
+  color: #151C65;
 }
 
 .square:focus {
@@ -42,9 +44,48 @@ ol, ul {
 
 .game {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-board {
+  display: inline;
+  max-width: 240px;
 }
 
 .game-info {
-  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  max-width: 240px;
+}
+
+.game-info > div:first-child {
+  text-align: center;
+}
+
+.game-info > div:first-child.end {
+  font-weight: bold;
+  color: hsl(234, 100%, 16%);
+}
+
+.game-info > div:first-child.end::before {
+  content: 'The Game is End!';
+  display: block;
+  font-weight: bold;
+  color: hsl(234, 100%, 16%);
+}
+
+.game-info > div:first-child:not(.end)::before {
+  content: 'Please don\'t stop the play!';
+  display: block;
+}
+
+.game-info > div:nth-child(2) {
+  margin-top: 1rem;
+}
+
+.game-info > button {
+  margin-top: 1rem;
 }
