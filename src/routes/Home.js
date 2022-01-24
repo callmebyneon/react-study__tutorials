@@ -1,21 +1,23 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { 
-  Box, 
-  Container, 
-  Divider, 
-  Tabs, 
-  Tab, 
-  Tooltip, 
-  Typography, 
-  Paper 
-} from '@mui/material';
+import { Link } from 'react-router-dom';
+
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
+import Fab from '@mui/material/Fab';
+import Paper from '@mui/material/Paper';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import { green, purple } from '@mui/material/colors';
 
-import Game from './Game';
-import { Vis } from './vis';
-import { LineChart, BarChart } from './c3';
+import Game from './../components/Game';
+import { Vis } from '../components/Vis';
+import { LineChart, BarChart } from '../components/C3';
 
 
 const customTheme = createTheme({
@@ -75,7 +77,7 @@ function a11yProps(index) {
   };
 }
 
-export default function Layout() {
+export default function Home() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -96,7 +98,7 @@ export default function Layout() {
 
   return (
     <ThemeProvider theme={customTheme}>
-      <Container>
+      <Container component="main">
         <Box sx={{ width: '100%' }}>
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
             <Tooltip title="Tic-Tc-Toe Game" placement="bottom">
@@ -132,6 +134,24 @@ export default function Layout() {
           </TabPanel>
         </Box>
       </Container>
+      <Link to="/signin">
+        <Fab 
+          size="small"
+          color="primary" 
+          variant='extended' 
+          aria-label="Sign in" 
+          sx={{ 
+            position: 'absolute',
+            top: 7,
+            right: 24,
+            fontSize: 12,
+            p: 2
+          }}
+        >
+          <LockOutlinedIcon fontSize="small" sx={{ mr: 1 }} />
+          Sign In
+        </Fab>
+      </Link>
     </ThemeProvider>
   );
 }
