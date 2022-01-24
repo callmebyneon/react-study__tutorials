@@ -1,4 +1,3 @@
-import React from 'react';
 import './../../node_modules/react-vis/dist/style.css'
 import { XYPlot, LineSeries, VerticalGridLines, HorizontalGridLines, XAxis, YAxis } from 'react-vis';
 

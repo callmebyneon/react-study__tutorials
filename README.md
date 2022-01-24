@@ -17,6 +17,7 @@ You may also see any lint errors in the console.
 
 ### Tried Chart libraries
 
+- __APEXCHARTS__
 - __Vis.js__
 - __C3__
 - ~~VISX~~

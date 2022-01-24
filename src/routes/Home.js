@@ -16,8 +16,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import { green, purple } from '@mui/material/colors';
 
 import Game from './../components/Game';
-import { Vis } from '../components/Vis';
-import { LineChart, BarChart } from '../components/C3';
+import { Vis } from './../components/Vis';
+import { LineChart, BarChart } from './../components/C3';
+import { Apex } from './../components/Apex';
 
 
 const customTheme = createTheme({
@@ -110,6 +111,9 @@ export default function Home() {
             <Tooltip title="C3 Chart" placement="bottom">
               <Tab label="C3" {...a11yProps(2)} />
             </Tooltip>
+            <Tooltip title="APEXCHARTS" placement="bottom">
+              <Tab label="APEXCHARTS" {...a11yProps(3)} />
+            </Tooltip>
           </Tabs>
         </Box>
       </Container>
@@ -130,6 +134,11 @@ export default function Home() {
             </Paper>
             <Paper className="c3Chrart" elevation={3} sx={{ overflow: 'auto', marginTop: 2 }}>
               <BarChart data={chartData.bar} />
+            </Paper>
+          </TabPanel>
+          <TabPanel value={value} index={3}>
+            <Paper className="APEXCHARTS" elevation={3} sx={{ p: 2, overflow: 'auto' }}>
+              <Apex />
             </Paper>
           </TabPanel>
         </Box>
